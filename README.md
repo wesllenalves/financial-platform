@@ -9,7 +9,12 @@ it never calculates.
 
 ## Status
 
-Architecture defined; implementation not started. See
+Phase 1 (MVP foundation) is running: registration and login, accounts, hierarchical
+categories, manual income/expense/transfer entry, deterministic monthly metrics, category
+breakdown, monthly trend, recurring-expense detection, and an Angular dashboard.
+
+Document ingestion, the findings rule engine, and the AI assistant are specified in the
+docs and not implemented yet. See
 [docs/implementation-plan.md](docs/implementation-plan.md) for the milestone checklist.
 
 ## Documentation
@@ -28,7 +33,7 @@ Architecture defined; implementation not started. See
 Angular + TypeScript · FastAPI + Pydantic + SQLAlchemy + Alembic · PostgreSQL ·
 OpenAI behind a provider abstraction · Docker Compose for local development.
 
-## Local development (once M0 lands)
+## Local development
 
 ```bash
 cp .env.example .env
@@ -36,6 +41,25 @@ docker compose up
 ```
 
 Frontend on `http://localhost:4200`, API and Swagger UI on `http://localhost:8000/docs`.
+
+Without Docker:
+
+```bash
+cd backend && python -m venv .venv && .venv/bin/pip install -e ".[dev]"
+.venv/bin/alembic upgrade head
+.venv/bin/python -m app.cli.seed          # demo@example.com / demo12345
+.venv/bin/uvicorn app.main:app --reload
+
+cd ../frontend && npm install && npm start
+```
+
+## Tests
+
+```bash
+cd backend && .venv/bin/pytest          # needs a local PostgreSQL; creates a scratch database
+cd backend && .venv/bin/ruff check . && .venv/bin/mypy app
+cd frontend && npm test
+```
 
 The application runs without `OPENAI_API_KEY`: AI features return an "unavailable"
 response and every deterministic feature keeps working.
