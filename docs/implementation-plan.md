@@ -29,11 +29,11 @@ Deliverable: an empty but running, linted, tested, containerized app.
 
 ## M1 — Auth and user isolation
 
-- [ ] `users` table and migration
-- [ ] Register, login, refresh, `GET /api/v1/users/me`
-- [ ] Argon2 hashing, JWT access + refresh, `get_current_user` dependency
-- [ ] Angular shell: layout, navigation, login/register pages, auth interceptor, route guards
-- [ ] Tests: auth happy path, wrong password, expired token, and the first user-isolation test
+- [x] `users` table and migration
+- [x] Register, login, refresh, `GET /api/v1/users/me`
+- [x] Argon2 hashing, JWT access + refresh, `get_current_user` dependency
+- [x] Angular shell: layout, navigation, login/register pages, auth interceptor, route guards
+- [x] Tests: auth happy path, wrong password, expired token, and the first user-isolation test
 
 Deliverable: a user can register, log in, and see an empty authenticated app.
 
