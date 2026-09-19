@@ -19,11 +19,11 @@ Definition of done for every milestone:
 
 ## M0 — Foundations
 
-- [ ] Repository skeleton (`backend/`, `frontend/`, `docs/`, `docker-compose.yml`, `.env.example`)
-- [ ] `docker compose up` brings up postgres + backend + frontend
-- [ ] FastAPI app factory, settings, structured logging, correlation-id middleware, error envelope
-- [ ] Alembic wired, first empty migration, health endpoint
-- [ ] Tooling: ruff, mypy, pytest with coverage; Angular lint; CI running all of it
+- [x] Repository skeleton (`backend/`, `frontend/`, `docs/`, `docker-compose.yml`, `.env.example`)
+- [x] `docker compose up` brings up postgres + backend + frontend
+- [x] FastAPI app factory, settings, structured logging, correlation-id middleware, error envelope
+- [x] Alembic wired, first empty migration, health endpoint
+- [x] Tooling: ruff, mypy, pytest with coverage; Angular lint; CI running all of it
 
 Deliverable: an empty but running, linted, tested, containerized app.
 
