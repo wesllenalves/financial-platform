@@ -74,9 +74,9 @@ Deliverable: a user uploads a boleto or NF-e and confirms it into a transaction.
 
 ## M5 — Image/OCR
 
-- [ ] `OcrEngine` interface, Tesseract implementation, image pre-processing
-- [ ] Scanned-PDF routing to the image path
-- [ ] Tests with synthetic receipt images
+- [x] `OcrEngine` interface, Tesseract implementation, image pre-processing
+- [x] Scanned-PDF routing to the image path
+- [x] Tests with synthetic receipt images
 
 Deliverable: photographed receipts are importable. Split from M4 so M4 can ship sooner.
 
