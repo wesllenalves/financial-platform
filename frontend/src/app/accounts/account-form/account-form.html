@@ -1,0 +1,39 @@
+<div class="form-container">
+  <h2>{{ isEditMode ? 'Edit Account' : 'New Account' }}</h2>
+
+  <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Account Name *</label>
+      <input type="text" id="name" formControlName="name">
+    </div>
+
+    <div class="form-group">
+      <label for="type">Account Type *</label>
+      <select id="type" formControlName="type">
+        <option *ngFor="let t of accountTypes" [value]="t">{{ t }}</option>
+      </select>
+    </div>
+
+    <div class="form-group" *ngIf="!isEditMode">
+      <label for="opening_balance">Opening Balance</label>
+      <input type="number" step="0.01" id="opening_balance" formControlName="opening_balance">
+    </div>
+
+    <div class="form-group">
+      <label for="institution">Institution</label>
+      <input type="text" id="institution" formControlName="institution">
+    </div>
+
+    <div class="form-group checkbox" *ngIf="isEditMode">
+      <label>
+        <input type="checkbox" formControlName="active">
+        Active
+      </label>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="accountForm.invalid" class="btn btn-primary">Save</button>
+      <a routerLink="/accounts" class="btn btn-secondary">Cancel</a>
+    </div>
+  </form>
+</div>

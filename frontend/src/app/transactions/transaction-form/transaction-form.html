@@ -1,0 +1,69 @@
+<div class="form-container">
+  <h2>{{ isEditMode ? 'Edit Transaction' : 'New Transaction' }}</h2>
+
+  <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="account_id">Account *</label>
+      <select id="account_id" formControlName="account_id">
+        <option value="">-- Select Account --</option>
+        <option *ngFor="let acc of accounts" [value]="acc.id">{{ acc.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="transaction_type">Type *</label>
+      <select id="transaction_type" formControlName="transaction_type">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+        <option value="transfer">Transfer</option>
+      </select>
+    </div>
+
+    <div class="form-group" *ngIf="transactionForm.value.transaction_type === 'transfer'">
+      <label for="to_account_id">To Account *</label>
+      <select id="to_account_id" formControlName="to_account_id">
+        <option value="">-- Select Destination Account --</option>
+        <option *ngFor="let acc of accounts" [value]="acc.id" [disabled]="acc.id === transactionForm.value.account_id">{{ acc.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group" *ngIf="transactionForm.value.transaction_type !== 'transfer'">
+      <label>Category</label>
+      <app-category-picker formControlName="category_id" [kindFilter]="transactionForm.value.transaction_type"></app-category-picker>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description *</label>
+      <input type="text" id="description" formControlName="description">
+    </div>
+
+    <div class="form-group">
+      <label for="amount">Amount *</label>
+      <input type="number" step="0.01" id="amount" formControlName="amount">
+    </div>
+
+    <div class="form-group">
+      <label for="transaction_date">Date *</label>
+      <input type="date" id="transaction_date" formControlName="transaction_date">
+    </div>
+
+    <div class="form-group">
+      <label for="merchant">Merchant</label>
+      <input type="text" id="merchant" formControlName="merchant">
+    </div>
+
+    <div class="form-group">
+      <label for="status">Status</label>
+      <select id="status" formControlName="status">
+        <option value="pending">Pending</option>
+        <option value="paid">Paid</option>
+      </select>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="transactionForm.invalid" class="btn btn-primary">Save</button>
+      <a routerLink="/transactions" class="btn btn-secondary">Cancel</a>
+    </div>
+  </form>
+</div>

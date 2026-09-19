@@ -39,22 +39,22 @@ Deliverable: a user can register, log in, and see an empty authenticated app.
 
 ## M2 — Accounts, categories, transactions
 
-- [ ] `accounts`, `categories`, `transactions` tables and migrations; seeded default category tree
-- [ ] Transaction CRUD with filtering (period, category, account, type, search) and pagination
-- [ ] Transfers as linked pairs, excluded from income/expense metrics
-- [ ] Angular: transaction list, create/edit dialog, category picker, account management
-- [ ] Tests: CRUD, validation, `Decimal` round-trip, user isolation per endpoint
+- [x] `accounts`, `categories`, `transactions` tables and migrations; seeded default category tree
+- [x] Transaction CRUD with filtering (period, category, account, type, search) and pagination
+- [x] Transfers as linked pairs, excluded from income/expense metrics
+- [x] Angular: transaction list, create/edit dialog, category picker, account management
+- [x] Tests: CRUD, validation, `Decimal` round-trip, user isolation per endpoint
 
 Deliverable: manual financial tracking works end to end. **First genuinely useful version.**
 
 ## M3 — Financial metrics and dashboard
 
-- [ ] Metrics package (income, expenses, balance, savings rate, category distribution, trend)
-- [ ] Recurrence detection
-- [ ] `GET /api/v1/analysis/summary`, `/by-category`, `/trend`, `/recurring`
-- [ ] Angular dashboard: summary cards, income-vs-expense chart, category donut, trend line, upcoming bills
-- [ ] Seed command producing 12 months of realistic data
-- [ ] Tests: hand-computed metric expectations, golden-file snapshot over the seed data
+- [x] Metrics package (income, expenses, balance, savings rate, category distribution, trend)
+- [x] Recurrence detection
+- [x] `GET /api/v1/analysis/summary`, `/by-category`, `/trend`, `/recurring`
+- [x] Angular dashboard: summary cards, income-vs-expense chart, category donut, trend line, upcoming bills
+- [x] Seed command producing 12 months of realistic data
+- [x] Tests: hand-computed metric expectations, golden-file snapshot over the seed data
 
 Deliverable: the dashboard answers the spec's eight questions.
 

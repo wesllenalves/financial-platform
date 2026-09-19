@@ -1,0 +1,6 @@
+<select [value]="value" (change)="onSelectChange($event)" class="form-control">
+  <option [value]="null">-- Select a Category --</option>
+  <option *ngFor="let c of filteredCategories" [value]="c.id">
+    {{ c.name }}
+  </option>
+</select>
