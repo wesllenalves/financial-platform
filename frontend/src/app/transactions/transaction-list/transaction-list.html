@@ -1,0 +1,53 @@
+<div class="transactions-container">
+  <div class="header">
+    <h2>Transactions</h2>
+    <a routerLink="/transactions/new" class="btn btn-primary">Add Transaction</a>
+  </div>
+
+  <form [formGroup]="filterForm" class="filters">
+    <input type="text" formControlName="search" placeholder="Search description...">
+
+    <select formControlName="transaction_type">
+      <option value="">All Types</option>
+      <option value="income">Income</option>
+      <option value="expense">Expense</option>
+    </select>
+
+    <select formControlName="account_id">
+      <option value="">All Accounts</option>
+      <option *ngFor="let acc of accounts" [value]="acc.id">{{ acc.name }}</option>
+    </select>
+
+    <app-category-picker formControlName="category_id" [kindFilter]="filterForm.value.transaction_type || undefined"></app-category-picker>
+  </form>
+
+  <table class="table" *ngIf="transactions.length > 0; else emptyState">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of transactions">
+        <td>{{ t.transaction_date }}</td>
+        <td>{{ t.description }} <small *ngIf="t.merchant">({{ t.merchant }})</small></td>
+        <td>{{ t.transaction_type }}</td>
+        <td>{{ t.amount }}</td>
+        <td>{{ t.status }}</td>
+        <td>
+          <a [routerLink]="['/transactions', t.id, 'edit']" class="btn btn-sm">Edit</a>
+          <button (click)="deleteTransaction(t.id)" class="btn btn-sm btn-danger">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #emptyState>
+    <p>No transactions found.</p>
+  </ng-template>
+</div>

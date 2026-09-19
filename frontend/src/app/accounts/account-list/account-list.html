@@ -1,0 +1,36 @@
+<div class="accounts-container">
+  <div class="header">
+    <h2>Accounts</h2>
+    <a routerLink="/accounts/new" class="btn btn-primary">Add Account</a>
+  </div>
+
+  <table class="table" *ngIf="accounts.length > 0; else noAccounts">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Institution</th>
+        <th>Current Balance</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let account of accounts">
+        <td>{{ account.name }}</td>
+        <td>{{ account.type }}</td>
+        <td>{{ account.institution || '-' }}</td>
+        <td>{{ account.current_balance || account.opening_balance }}</td>
+        <td>{{ account.active ? 'Active' : 'Inactive' }}</td>
+        <td>
+          <a [routerLink]="['/accounts', account.id, 'edit']" class="btn btn-sm">Edit</a>
+          <button (click)="deleteAccount(account.id)" class="btn btn-sm btn-danger">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noAccounts>
+    <p>No accounts found. Create one to get started.</p>
+  </ng-template>
+</div>

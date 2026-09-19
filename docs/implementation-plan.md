@@ -39,11 +39,11 @@ Deliverable: a user can register, log in, and see an empty authenticated app.
 
 ## M2 — Accounts, categories, transactions
 
-- [ ] `accounts`, `categories`, `transactions` tables and migrations; seeded default category tree
-- [ ] Transaction CRUD with filtering (period, category, account, type, search) and pagination
-- [ ] Transfers as linked pairs, excluded from income/expense metrics
-- [ ] Angular: transaction list, create/edit dialog, category picker, account management
-- [ ] Tests: CRUD, validation, `Decimal` round-trip, user isolation per endpoint
+- [x] `accounts`, `categories`, `transactions` tables and migrations; seeded default category tree
+- [x] Transaction CRUD with filtering (period, category, account, type, search) and pagination
+- [x] Transfers as linked pairs, excluded from income/expense metrics
+- [x] Angular: transaction list, create/edit dialog, category picker, account management
+- [x] Tests: CRUD, validation, `Decimal` round-trip, user isolation per endpoint
 
 Deliverable: manual financial tracking works end to end. **First genuinely useful version.**
 
