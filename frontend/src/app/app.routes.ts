@@ -10,6 +10,7 @@ import { TransactionForm } from './transactions/transaction-form/transaction-for
 import { DashboardComponent } from './dashboard/dashboard';
 import { DocumentUpload } from './documents/document-upload/document-upload';
 import { ExtractionReview } from './documents/extraction-review/extraction-review';
+import { FindingsList } from './findings/findings-list/findings-list';
 
 export const routes: Routes = [
   { path: 'login', component: Login },
@@ -28,6 +29,7 @@ export const routes: Routes = [
       { path: 'documents/upload', component: DocumentUpload },
       { path: 'documents/:id/review', component: ExtractionReview },
       { path: 'dashboard', component: DashboardComponent },
+      { path: 'findings', component: FindingsList },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },

@@ -82,11 +82,11 @@ Deliverable: photographed receipts are importable. Split from M4 so M4 can ship 
 
 ## M6 — Rule engine and findings
 
-- [ ] `findings` table, rule interface, `FinancialContext` builder
-- [ ] The twelve initial rules with computed severity
-- [ ] `POST /api/v1/analysis/run`, `GET /api/v1/findings`
-- [ ] Angular: findings list with evidence expansion
-- [ ] Tests: table-driven per rule, severity thresholds, idempotent re-runs
+- [x] `findings` table, rule interface, `FinancialContext` builder
+- [x] The twelve initial rules with computed severity
+- [x] `POST /api/v1/analysis/run`, `GET /api/v1/findings`
+- [x] Angular: findings list with evidence expansion
+- [x] Tests: table-driven per rule, severity thresholds, idempotent re-runs
 
 Deliverable: deterministic findings, with evidence, and no AI involved.
 
