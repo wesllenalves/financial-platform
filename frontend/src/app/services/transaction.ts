@@ -71,6 +71,10 @@ export class TransactionService {
     return this.http.post<Transaction>(this.API_URL, data);
   }
 
+  createTransfer(data: any): Observable<Transaction[]> {
+    return this.http.post<Transaction[]>(`${this.API_URL}/transfers`, data);
+  }
+
   updateTransaction(id: string, data: Partial<TransactionCreate>): Observable<Transaction> {
     return this.http.patch<Transaction>(`${this.API_URL}/${id}`, data);
   }

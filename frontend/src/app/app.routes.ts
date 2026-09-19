@@ -7,6 +7,7 @@ import { AccountList } from './accounts/account-list/account-list';
 import { AccountForm } from './accounts/account-form/account-form';
 import { TransactionList } from './transactions/transaction-list/transaction-list';
 import { TransactionForm } from './transactions/transaction-form/transaction-form';
+import { DashboardComponent } from './dashboard/dashboard';
 
 export const routes: Routes = [
   { path: 'login', component: Login },
@@ -22,7 +23,8 @@ export const routes: Routes = [
       { path: 'transactions', component: TransactionList },
       { path: 'transactions/new', component: TransactionForm },
       { path: 'transactions/:id/edit', component: TransactionForm },
-      { path: '', redirectTo: 'transactions', pathMatch: 'full' }
+      { path: 'dashboard', component: DashboardComponent },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },
   { path: '**', redirectTo: '' }

@@ -33,8 +33,22 @@ export class TransactionForm implements OnInit {
       amount: ['', [Validators.required, Validators.min(0.01)]],
       transaction_date: [new Date().toISOString().split('T')[0], Validators.required],
       category_id: [null],
+      to_account_id: [''],
       status: ['paid'],
       merchant: ['']
+    });
+
+    this.transactionForm.get('transaction_type')?.valueChanges.subscribe(type => {
+      const toAccountCtrl = this.transactionForm.get('to_account_id');
+      const catCtrl = this.transactionForm.get('category_id');
+      if (type === 'transfer') {
+        toAccountCtrl?.setValidators([Validators.required]);
+        catCtrl?.clearValidators();
+      } else {
+        toAccountCtrl?.clearValidators();
+      }
+      toAccountCtrl?.updateValueAndValidity();
+      catCtrl?.updateValueAndValidity();
     });
   }
 
@@ -57,14 +71,27 @@ export class TransactionForm implements OnInit {
   onSubmit() {
     if (this.transactionForm.valid) {
       const payload = this.transactionForm.value;
-      const request = this.isEditMode && this.transactionId
-        ? this.transactionService.updateTransaction(this.transactionId, payload)
-        : this.transactionService.createTransaction(payload);
 
-      request.subscribe({
+      const onComplete = {
         next: () => this.router.navigate(['/transactions']),
-        error: (err) => console.error('Error saving transaction', err)
-      });
+        error: (err: any) => console.error('Error saving transaction', err)
+      };
+
+      if (payload.transaction_type === 'transfer' && !this.isEditMode) {
+        this.transactionService.createTransfer({
+          from_account_id: payload.account_id,
+          to_account_id: payload.to_account_id,
+          amount: payload.amount,
+          transaction_date: payload.transaction_date,
+          description: payload.description
+        }).subscribe(onComplete);
+      } else {
+        const request = this.isEditMode && this.transactionId
+          ? this.transactionService.updateTransaction(this.transactionId, payload)
+          : this.transactionService.createTransaction(payload);
+
+        request.subscribe(onComplete);
+      }
     }
   }
 }

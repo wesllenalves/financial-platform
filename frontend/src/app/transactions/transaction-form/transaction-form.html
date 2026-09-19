@@ -16,10 +16,19 @@
       <select id="transaction_type" formControlName="transaction_type">
         <option value="income">Income</option>
         <option value="expense">Expense</option>
+        <option value="transfer">Transfer</option>
       </select>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" *ngIf="transactionForm.value.transaction_type === 'transfer'">
+      <label for="to_account_id">To Account *</label>
+      <select id="to_account_id" formControlName="to_account_id">
+        <option value="">-- Select Destination Account --</option>
+        <option *ngFor="let acc of accounts" [value]="acc.id" [disabled]="acc.id === transactionForm.value.account_id">{{ acc.name }}</option>
+      </select>
+    </div>
+
+    <div class="form-group" *ngIf="transactionForm.value.transaction_type !== 'transfer'">
       <label>Category</label>
       <app-category-picker formControlName="category_id" [kindFilter]="transactionForm.value.transaction_type"></app-category-picker>
     </div>

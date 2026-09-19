@@ -49,12 +49,12 @@ Deliverable: manual financial tracking works end to end. **First genuinely usefu
 
 ## M3 — Financial metrics and dashboard
 
-- [ ] Metrics package (income, expenses, balance, savings rate, category distribution, trend)
-- [ ] Recurrence detection
-- [ ] `GET /api/v1/analysis/summary`, `/by-category`, `/trend`, `/recurring`
-- [ ] Angular dashboard: summary cards, income-vs-expense chart, category donut, trend line, upcoming bills
-- [ ] Seed command producing 12 months of realistic data
-- [ ] Tests: hand-computed metric expectations, golden-file snapshot over the seed data
+- [x] Metrics package (income, expenses, balance, savings rate, category distribution, trend)
+- [x] Recurrence detection
+- [x] `GET /api/v1/analysis/summary`, `/by-category`, `/trend`, `/recurring`
+- [x] Angular dashboard: summary cards, income-vs-expense chart, category donut, trend line, upcoming bills
+- [x] Seed command producing 12 months of realistic data
+- [x] Tests: hand-computed metric expectations, golden-file snapshot over the seed data
 
 Deliverable: the dashboard answers the spec's eight questions.
 

@@ -17,6 +17,8 @@ export class TransactionList implements OnInit {
   transactions: Transaction[] = [];
   accounts: Account[] = [];
   total = 0;
+  limit = 50;
+  offset = 0;
 
   filterForm: FormGroup;
 
@@ -41,6 +43,7 @@ export class TransactionList implements OnInit {
     this.loadTransactions();
 
     this.filterForm.valueChanges.subscribe(() => {
+      this.offset = 0; // reset pagination on filter change
       this.loadTransactions();
     });
   }
@@ -50,13 +53,31 @@ export class TransactionList implements OnInit {
   }
 
   loadTransactions() {
-    const filters = this.filterForm.value;
+    const filters = {
+      ...this.filterForm.value,
+      limit: this.limit,
+      offset: this.offset
+    };
     this.transactionService.listTransactions(filters).subscribe({
       next: (data) => {
         this.transactions = data.items;
         this.total = data.total;
       }
     });
+  }
+
+  nextPage() {
+    if (this.offset + this.limit < this.total) {
+      this.offset += this.limit;
+      this.loadTransactions();
+    }
+  }
+
+  prevPage() {
+    if (this.offset > 0) {
+      this.offset -= this.limit;
+      this.loadTransactions();
+    }
   }
 
   deleteTransaction(id: string) {

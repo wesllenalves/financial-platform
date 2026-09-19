@@ -1,0 +1,71 @@
+<div class="dashboard-container" *ngIf="dashboard">
+  <h2>Dashboard</h2>
+
+  <div class="summary-cards">
+    <div class="card">
+      <h3>Current Balance</h3>
+      <p class="value">{{ dashboard.current_balance | currency }}</p>
+    </div>
+    <div class="card">
+      <h3>Period Income</h3>
+      <p class="value">{{ dashboard.summary.income | currency }}</p>
+    </div>
+    <div class="card">
+      <h3>Period Expenses</h3>
+      <p class="value">{{ dashboard.summary.expenses | currency }}</p>
+    </div>
+    <div class="card">
+      <h3>Savings Rate</h3>
+      <p class="value">{{ dashboard.summary.savings_rate ? (dashboard.summary.savings_rate | percent) : '0%' }}</p>
+    </div>
+  </div>
+
+  <div class="charts-container">
+    <div class="chart-wrapper">
+      <h3>Income vs Expense Trend</h3>
+      <canvas baseChart
+        [data]="trendChartData"
+        [options]="trendChartOptions"
+        [type]="trendChartType">
+      </canvas>
+    </div>
+
+    <div class="chart-wrapper">
+      <h3>Expenses by Category</h3>
+      <canvas baseChart
+        [data]="donutChartData"
+        [options]="donutChartOptions"
+        [type]="donutChartType">
+      </canvas>
+    </div>
+  </div>
+
+  <div class="upcoming-bills">
+    <h3>Upcoming Bills</h3>
+    <table class="table" *ngIf="dashboard.upcoming_bills.length > 0; else noBills">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Amount</th>
+          <th>Due Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bill of dashboard.upcoming_bills">
+          <td>{{ bill.description }}</td>
+          <td>{{ bill.amount | currency }}</td>
+          <td>{{ bill.due_date }}</td>
+          <td>{{ bill.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #noBills>
+      <p>No upcoming bills found.</p>
+    </ng-template>
+  </div>
+</div>
+
+<div *ngIf="!dashboard">
+  Loading dashboard...
+</div>

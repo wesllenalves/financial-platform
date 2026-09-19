@@ -47,6 +47,12 @@
     </tbody>
   </table>
 
+  <div class="pagination" *ngIf="transactions.length > 0">
+    <button (click)="prevPage()" [disabled]="offset === 0">Previous</button>
+    <span>Showing {{ offset + 1 }} to {{ offset + limit < total ? offset + limit : total }} of {{ total }}</span>
+    <button (click)="nextPage()" [disabled]="offset + limit >= total">Next</button>
+  </div>
+
   <ng-template #emptyState>
     <p>No transactions found.</p>
   </ng-template>
