@@ -6,5 +6,6 @@ from app.accounts.models import Account
 from app.categories.models import Category
 from app.transactions.models import Transaction
 from app.users.models import User
+from app.documents.models import Document, ExtractedItem
 
-__all__ = ["Account", "Category", "Transaction", "User"]
+__all__ = ["Account", "Category", "Transaction", "User", "Document", "ExtractedItem"]

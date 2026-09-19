@@ -1,0 +1,21 @@
+<div class="upload-container">
+  <h2>Upload Document</h2>
+  <p>Upload a PDF, XML, or image receipt for automatic extraction.</p>
+
+  <div class="form-group">
+    <input type="file" (change)="onFileSelected($event)" [disabled]="isUploading">
+  </div>
+
+  <button class="btn btn-primary" (click)="upload()" [disabled]="!selectedFile || isUploading">
+    {{ isUploading ? 'Uploading...' : 'Upload' }}
+  </button>
+
+  <div *ngIf="isUploading" class="progress-bar-container mt-2">
+    <div class="progress-bar" [style.width.%]="progress"></div>
+    <span class="progress-text">{{ progress }}%</span>
+  </div>
+
+  <div *ngIf="message" class="message mt-2" [ngClass]="{'error': message.includes('Could not')}">
+    {{ message }}
+  </div>
+</div>
