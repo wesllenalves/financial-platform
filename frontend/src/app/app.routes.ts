@@ -8,6 +8,9 @@ import { AccountForm } from './accounts/account-form/account-form';
 import { TransactionList } from './transactions/transaction-list/transaction-list';
 import { TransactionForm } from './transactions/transaction-form/transaction-form';
 import { DashboardComponent } from './dashboard/dashboard';
+import { DocumentUpload } from './documents/document-upload/document-upload';
+import { ExtractionReview } from './documents/extraction-review/extraction-review';
+import { FindingsList } from './findings/findings-list/findings-list';
 
 export const routes: Routes = [
   { path: 'login', component: Login },
@@ -23,7 +26,10 @@ export const routes: Routes = [
       { path: 'transactions', component: TransactionList },
       { path: 'transactions/new', component: TransactionForm },
       { path: 'transactions/:id/edit', component: TransactionForm },
+      { path: 'documents/upload', component: DocumentUpload },
+      { path: 'documents/:id/review', component: ExtractionReview },
       { path: 'dashboard', component: DashboardComponent },
+      { path: 'findings', component: FindingsList },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },

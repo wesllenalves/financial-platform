@@ -1,0 +1,51 @@
+<div class="findings-container">
+  <div class="header">
+    <h2>Financial Findings & Insights</h2>
+
+    <div class="actions">
+      <input type="month" [(ngModel)]="selectedPeriod" class="form-control me-2" style="width: 150px; display: inline-block;">
+      <button class="btn btn-primary" (click)="runAnalysis()" [disabled]="isLoading">
+        Run Analysis
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="runMessage" class="alert alert-info mt-3">
+    {{ runMessage }}
+  </div>
+
+  <div *ngIf="isLoading" class="mt-3">
+    <p>Loading findings...</p>
+  </div>
+
+  <div *ngIf="!isLoading && findings.length === 0" class="mt-3">
+    <p>No findings available. Run an analysis for a period with transactions.</p>
+  </div>
+
+  <div class="findings-list mt-3">
+    <div *ngFor="let finding of findings" class="card mb-3 finding-card" [ngClass]="finding.severity">
+      <div class="card-header d-flex justify-content-between align-items-center" (click)="toggleEvidence(finding.id)" style="cursor: pointer;">
+        <div>
+          <span class="badge" [ngClass]="{
+            'bg-danger': finding.severity === 'critical',
+            'bg-warning text-dark': finding.severity === 'high',
+            'bg-info text-dark': finding.severity === 'medium',
+            'bg-secondary': finding.severity === 'low'
+          }">{{ finding.severity | uppercase }}</span>
+          <span class="ms-2 fw-bold">{{ finding.title }}</span>
+        </div>
+        <div>
+          <span class="text-muted">{{ finding.period }}</span>
+          <span *ngIf="finding.estimated_monthly_impact" class="ms-3 text-danger fw-bold">
+            Impact: {{ finding.estimated_monthly_impact | currency }}
+          </span>
+        </div>
+      </div>
+
+      <div class="card-body" *ngIf="expandedFindingId === finding.id">
+        <h5>Evidence Data</h5>
+        <pre class="bg-light p-2 rounded">{{ formatEvidence(finding.evidence) }}</pre>
+      </div>
+    </div>
+  </div>
+</div>

@@ -60,33 +60,33 @@ Deliverable: the dashboard answers the spec's eight questions.
 
 ## M4 — Document ingestion
 
-- [ ] `documents` and `extracted_items` tables and migrations
-- [ ] Upload endpoint with validation (size, magic bytes, hash dedup) and safe storage
-- [ ] Pipeline skeleton with stage interfaces; parser registry
-- [ ] PDF parser, XML parser (generic + NF-e profile), JSON importer
-- [ ] Normalization (BRL amounts, day-first dates, merchant normalization) and field confidence
-- [ ] Duplicate detection producing warnings
-- [ ] Confirmation endpoints: confirm / edit-and-confirm / reject
-- [ ] Angular: upload with progress, extraction review screen with confidence highlighting and duplicate warnings
-- [ ] Tests: golden files per format, security negatives (XXE, bombs, oversized, wrong magic bytes), end-to-end confirm
+- [x] `documents` and `extracted_items` tables and migrations
+- [x] Upload endpoint with validation (size, magic bytes, hash dedup) and safe storage
+- [x] Pipeline skeleton with stage interfaces; parser registry
+- [x] PDF parser, XML parser (generic + NF-e profile), JSON importer
+- [x] Normalization (BRL amounts, day-first dates, merchant normalization) and field confidence
+- [x] Duplicate detection producing warnings
+- [x] Confirmation endpoints: confirm / edit-and-confirm / reject
+- [x] Angular: upload with progress, extraction review screen with confidence highlighting and duplicate warnings
+- [x] Tests: golden files per format, security negatives (XXE, bombs, oversized, wrong magic bytes), end-to-end confirm
 
 Deliverable: a user uploads a boleto or NF-e and confirms it into a transaction.
 
 ## M5 — Image/OCR
 
-- [ ] `OcrEngine` interface, Tesseract implementation, image pre-processing
-- [ ] Scanned-PDF routing to the image path
-- [ ] Tests with synthetic receipt images
+- [x] `OcrEngine` interface, Tesseract implementation, image pre-processing
+- [x] Scanned-PDF routing to the image path
+- [x] Tests with synthetic receipt images
 
 Deliverable: photographed receipts are importable. Split from M4 so M4 can ship sooner.
 
 ## M6 — Rule engine and findings
 
-- [ ] `findings` table, rule interface, `FinancialContext` builder
-- [ ] The twelve initial rules with computed severity
-- [ ] `POST /api/v1/analysis/run`, `GET /api/v1/findings`
-- [ ] Angular: findings list with evidence expansion
-- [ ] Tests: table-driven per rule, severity thresholds, idempotent re-runs
+- [x] `findings` table, rule interface, `FinancialContext` builder
+- [x] The twelve initial rules with computed severity
+- [x] `POST /api/v1/analysis/run`, `GET /api/v1/findings`
+- [x] Angular: findings list with evidence expansion
+- [x] Tests: table-driven per rule, severity thresholds, idempotent re-runs
 
 Deliverable: deterministic findings, with evidence, and no AI involved.
 
